@@ -1,0 +1,16 @@
+scenario SetHealthIndicator() version 1.0.0 {
+  SetRequest {
+    replace [ {
+      path: /interfaces/interface[name=leaf1_io]/config/health-indicator
+      val { string_val: "GOOD" }
+    } ]
+  }
+  >> { OK,
+  SetResponse {
+    response [ {
+      path: /interfaces/interface[name=leaf1_io]/config/health-indicator
+      op: gnmi::UpdateResult::REPLACE
+    } ]
+    timestamp: _
+  } }
+}

@@ -27,6 +27,8 @@ import (
 
 	"sunder.io/ncsu-sdc-fall2021/cdl"
 	"sunder.io/ncsu-sdc-fall2021/cdlang"
+
+	"github.com/stratum/testvectors/proto/testvector"
 )
 
 type TmplFileNames []string
@@ -179,5 +181,39 @@ func main() {
 		fmt.Printf("\n%+v\n", s)
 	}
 	// Process the template file with DOM as input.
-	processTemplate(dom)
+	// processTemplate(dom)
+
+	tv := testvector.TestVector{
+		TestCases: []*testvector.TestCase{},
+	}
+	for k, _ := range dom.Scenarios {
+
+		tv.TestCases = append(tv.TestCases, &testvector.TestCase{
+			TestCaseId: k,
+			// ActionGroups: ,
+		})
+	}
+
+	f := func(v interface{}) {
+		fmt.Printf("%T | %+v\n", v, v)
+	}
+	f(dom.CoveredPaths)
+	f(dom.GlobalInst)
+	f(dom.OtherScenarios)
+	f(dom.OtherSubScenarios)
+	f(dom.Scenarios)
+	i := dom.SubScenarios["GetHealthIndicator"].Children[0]
+	f(i.Protobuf)
+	f(i.Response)
+	f(tv)
+
+	for k, v := range dom.Scenarios {
+		for _, vv := range v.Children {
+			fmt.Println(k)
+			if vv.Protobuf != nil {
+
+				fmt.Printf("vv.Protobuf.GetTextproto(): %v\n", vv.Protobuf.GetTextproto())
+			}
+		}
+	}
 }

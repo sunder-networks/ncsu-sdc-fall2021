@@ -1,0 +1,59 @@
+test_cases: <
+  action_groups: <
+    sequential_action_group: <
+      actions: <
+        config_operation: <
+          gnmi_set_request: <
+            update: <
+              path: <
+                elem: <
+                  name: "interfaces"
+                >
+                elem: <
+                  name: "interface"
+                  key: <
+                    key: "name"
+                    value: "leaf1_io"
+                  >
+                >
+                elem: <
+                  name: "config"
+                >
+                elem: <
+                  name: "health-indicator"
+                >
+              >
+              val: <
+                string_val: "GOOD"
+              >
+            >
+          >
+          gnmi_set_response: <
+            response: <
+              path: <
+                elem: <
+                  name: "interfaces"
+                >
+                elem: <
+                  name: "interface"
+                  key: <
+                    key: "name"
+                    value: "leaf1_io"
+                  >
+                >
+                elem: <
+                  name: "config"
+                >
+                elem: <
+                  name: "health-indicator"
+                >
+              >
+              op: REPLACE
+            >
+          >
+        >
+      >
+    >
+  >
+  test_case_id: "demo-testcase"
+>

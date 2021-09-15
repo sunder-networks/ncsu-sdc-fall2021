@@ -57,10 +57,13 @@ func NewVisitor(dom *DOM) *Visitor {
 		dom:                  dom,
 		openStreams:          map[string]bool{},
 		streamOpeners: map[string]map[string]func(string) *Instruction{
-			"gNMI": map[string]func(string) *Instruction{
+			"p4Runtime": {
+				"Subscribe": newOpenP4RuntimeStr,
+			},
+			"gNMI": {
 				"Subscribe": newOpenGNMIStr,
 			},
-			"ctrl": map[string]func(string) *Instruction{
+			"ctrl": {
 				"Execute": newOpenCTRLStr,
 			},
 		},

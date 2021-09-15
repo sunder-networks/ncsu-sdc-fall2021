@@ -1,0 +1,176 @@
+{
+	"Scenarios": {
+		"GetHealthIndicator": {
+			"Type": 7,
+			"Name": "GetHealthIndicator",
+			"ID": 0,
+			"Children": [
+				{
+					"Type": 13,
+					"Name": "Call",
+					"ID": 0,
+					"Protobuf": {
+						"Name": "",
+						"FieldType": 5,
+						"Fields": [
+							{
+								"Name": "path",
+								"FieldType": 6,
+								"Fields": [
+									{
+										"Name": "path",
+										"FieldType": 5,
+										"Fields": [
+											{
+												"Name": "path",
+												"FieldType": 2,
+												"Value": {
+													"Elem": [
+														{
+															"Name": "interfaces"
+														},
+														{
+															"Name": "interface",
+															"Key": {
+																"name": {
+																	"ParameterKind": 2,
+																	"Name": "leaf1_io",
+																	"ParameterType": "string"
+																}
+															}
+														},
+														{
+															"Name": "config"
+														},
+														{
+															"Name": "health-indicator"
+														}
+													]
+												}
+											}
+										],
+										"SequenceSize": 0,
+										"CastType": ""
+									}
+								],
+								"SequenceSize": 0,
+								"CastType": ""
+							}
+						],
+						"SequenceSize": 0,
+						"CastType": "",
+						"TypeName": "GetRequest"
+					},
+					"Response": {
+						"Name": "",
+						"FieldType": 5,
+						"Fields": [
+							{
+								"Name": "notification",
+								"FieldType": 6,
+								"Fields": [
+									{
+										"Name": "notification",
+										"FieldType": 5,
+										"Fields": [
+											{
+												"Name": "update",
+												"FieldType": 6,
+												"Fields": [
+													{
+														"Name": "update",
+														"FieldType": 5,
+														"Fields": [
+															{
+																"Name": "val",
+																"FieldType": 5,
+																"Fields": [
+																	{
+																		"Name": "string_val",
+																		"FieldType": 0,
+																		"Value": "GOOD"
+																	}
+																],
+																"SequenceSize": 0,
+																"CastType": ""
+															}
+														],
+														"SequenceSize": 0,
+														"CastType": ""
+													}
+												],
+												"SequenceSize": 0,
+												"CastType": ""
+											},
+											{
+												"Name": "timestamp",
+												"FieldType": 4,
+												"Parameters": [
+													{
+														"ParameterKind": 4,
+														"Name": "\u003cignored\u003e",
+														"ParameterType": "\u003cignored\u003e"
+													}
+												]
+											}
+										],
+										"SequenceSize": 0,
+										"CastType": ""
+									}
+								],
+								"SequenceSize": 0,
+								"CastType": ""
+							}
+						],
+						"SequenceSize": 0,
+						"CastType": "",
+						"TypeName": "GetResponse"
+					}
+				}
+			],
+			"Version": {
+				"Major": 1,
+				"Minor": 0,
+				"Patch": 0
+			},
+			"Source": "scenario GetHealthIndicator() version 1.0.0 {\n  GetRequest {\n    path [ \n      {path: /interfaces/interface[name=leaf1_io]/config/health-indicator}\n    ]\n  }\n  \u003e\u003e { OK,\n  GetResponse {\n    notification [ \n      { \n        update [{val { string_val: \"GOOD\" }}]\n        timestamp: _ \n      } \n    ]\n   }\n  }\n}"
+		}
+	},
+	"CoveredPaths": {
+		"/interfaces/interface[name=leaf1_io]/config/health-indicator": {
+			"Path": "/interfaces/interface[name=leaf1_io]/config/health-indicator",
+			"Protobuf": {
+				"Name": "path",
+				"FieldType": 2,
+				"Value": {
+					"Elem": [
+						{
+							"Name": "interfaces"
+						},
+						{
+							"Name": "interface",
+							"Key": {
+								"name": {
+									"ParameterKind": 2,
+									"Name": "leaf1_io",
+									"ParameterType": "string"
+								}
+							}
+						},
+						{
+							"Name": "config"
+						},
+						{
+							"Name": "health-indicator"
+						}
+					]
+				}
+			},
+			"Scenarios": {
+				"0": {
+					"GetHealthIndicator": true
+				}
+			}
+		}
+	}
+}

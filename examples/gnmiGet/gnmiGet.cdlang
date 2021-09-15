@@ -1,0 +1,15 @@
+scenario GetHealthIndicator() version 1.0.0 {
+  GetRequest {
+    path [ 
+      {path: /interfaces/interface[name=leaf1_io]/config/health-indicator} ]
+  } >> { OK,
+  GetResponse {
+    notification [ 
+      { 
+        update [{val { string_val: "GOOD" }}]
+        timestamp: _ 
+      } 
+    ]
+   }
+  }
+}

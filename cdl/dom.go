@@ -58,6 +58,8 @@ const (
 	OpenGNMIStrInst
 	// OpenCTRLStrInst indicates an open-CTRL-stream instruction.
 	OpenCTRLStrInst
+	// OpenP4RuntimeStrInst indicates an open-P4Runtime-stream instruction.
+	OpenP4RuntimeStrInst
 	// CloseStrInst indicates a close-stream instruction.
 	CloseStrInst
 	// CallInst indicates a gRPC call instruction.
@@ -78,6 +80,7 @@ var instTypeToString = map[InstType]string{
 	SubScenarioInst:      "sub_scenario",
 	OpenGNMIStrInst:      "open_gnmi_stream",
 	OpenCTRLStrInst:      "open_ctrl_stream",
+	OpenP4RuntimeStrInst: "open_p4runtime_stream",
 	CloseStrInst:         "close_stream",
 	CallInst:             "call",
 	ConstProtoInst:       "const-proto",
@@ -221,6 +224,18 @@ var protoNameToNamespace = map[string]string{
 	"ExecuteRequest": "ctrl",
 	// ctrl Response
 	"ExecuteResponse": "ctrl",
+	// p4Runtime Requests
+	"WriteRequest":                       "p4runtime",
+	"ReadRequest":                        "p4runtime",
+	"SetForwardingPipelineConfigRequest": "p4runtime",
+	"GetForwardingPipelineConfigRequest": "p4runtime",
+	"StreamMessageRequest":               "p4runtime",
+	// p4Runtime Responses
+	"WriteResponse":                       "p4runtime",
+	"ReadResponse":                        "p4runtime",
+	"SetForwardingPipelineConfigResponse": "p4runtime",
+	"GetForwardingPipelineConfigResponse": "p4runtime",
+	"StreamMessageResponse":               "p4runtime",
 }
 
 // FuncName returns gRPC function name that accepts the type of protobuf specified by Protobuf field.
@@ -310,6 +325,15 @@ func newSubScenario(name string) *Instruction {
 		Type:    SubScenarioInst,
 		Name:    name,
 		Version: &Version{},
+	}
+}
+
+// newOpenP4RuntimeStr returns a CDLang instruction that opens a streaming p4Runtime interface.
+func newOpenP4RuntimeStr(channel string) *Instruction {
+	return &Instruction{
+		Type:    OpenP4RuntimeStrInst,
+		Name:    "OpenP4RuntimeStream",
+		Channel: channel,
 	}
 }
 
